@@ -1039,14 +1039,6 @@ ${guild.memberCount} أعضآء السيرفر
 
 
 
-client.on('guildCreate', guild => {
-    
-  var rebel = new Discord.RichEmbed()
-  .setColor(000000)
-		.setDescription('** شكرآ لك لإضافة بوت الألعاب الخاص بنا , آستمتع  **')
-		.setFooter(" R-Bot Team ")
-      guild.owner.send(rebel);
-});
 
 
 
