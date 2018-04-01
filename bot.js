@@ -905,71 +905,53 @@ m.sendMessage(args)
 });
 
 
-client.on('message', message => {
-if (message.content === 'G-help') {
-    let pages = [`للذهاب للصفحةة التآليةة ▶
-       للعودة الى الصفحه السابقةة ◀
-    `,`
-        » فكك
-    لجعل البوت يرسل كلمة أو جملة وأنت تقوم بتفكيكها
-    » سؤال
-    لإرسآل اليك سؤال وانت تقوم بالإجابة
-    » لغز
-    لإرسآل اليك لغز وانت تقوم بحله
-    » عواصم
-    لإيجاد عاصمة الدولة المطلوبه
-    » اعلام
-    للكشف عن علم الدولة
-    » امثال
-    للإجابة على المثل
-    
-    `
-    ,`
-       G-sug » لإرسآل أقترآحك للمبرمج
+client.on("message", message => {
+ if (message.content === "G-help") {
+
+  const embed = new Discord.RichEmbed() 
+      .setColor("RANDOM")
+      .setThumbnail(message.author.avatarURL)
+      .setDescription(` 
+   ** للألعآب G أوآمر **
+⇏ فكك ⇏ سؤال ⇏ لغز ⇏ عواصم ⇏ امثال ⇏ اعلام
+أستمتع ,
+
+    G-sug » لإرسآل أقترآحك للمبرمج
     G-inv » لإضافة البوت الى سيرفرك
     رابط البوت المباشر 
     » https://goo.gl/8qM1Cq
 
-    `]
-    let page = 1;
-
-    let embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setFooter(`Page ${page} of ${pages.length}`)
-    .setDescription(pages[page-1])
-
-    message.channel.sendEmbed(embed).then(msg => {
-
-        msg.react('◀').then( r => {
-            msg.react('▶')
+`);
 
 
-        const backwardsFilter = (reaction, user) => reaction.emoji.name === '◀' && user.id === message.author.id;
-        const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
+message.channel.sendEmbed(embed)
 
-        const backwards = msg.createReactionCollector(backwardsFilter, { time: 60000});
-        const forwards = msg.createReactionCollector(forwardsFilter, { time: 60000});
+}
+}); 
+
+client.on("message", message => {
+ if (message.content === "جي مساعدة") {
+
+  const embed = new Discord.RichEmbed() 
+      .setColor("RANDOM")
+      .setThumbnail(message.author.avatarURL)
+      .setDescription(` 
+   ** للألعآب G أوآمر **
+⇏ فكك ⇏ سؤال ⇏ لغز ⇏ عواصم ⇏ امثال ⇏ اعلام
+أستمتع ,
+
+    G-sug » لإرسآل أقترآحك للمبرمج
+    G-inv » لإضافة البوت الى سيرفرك
+    رابط البوت المباشر 
+    » https://goo.gl/8qM1Cq
+
+`);
 
 
+message.channel.sendEmbed(embed)
 
-        backwards.on('collect', r => {
-            if (page === 1) return;
-            page--;
-            embed.setDescription(pages[page-1]);
-            embed.setFooter(`Page ${page} of ${pages.length}`);
-            msg.edit(embed)
-        })
-        forwards.on('collect', r => {
-            if (page === pages.length) return;
-            page++;
-            embed.setDescription(pages[page-1]);
-            embed.setFooter(`Page ${page} of ${pages.length}`);
-            msg.edit(embed)
-        })
-        })
-    })
-    }
-});
+}
+}); 
 
 
 client.on('message', message => {
